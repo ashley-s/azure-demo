@@ -60,4 +60,5 @@ class Product {
     private int productID;
     private String productName;
     private int quantity;
+    private int price;
 }
