@@ -1,9 +1,14 @@
 package com.example.springdemo;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +21,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @SpringBootApplication
+@EnableConfigurationProperties(MessageProperties.class)
 public class SpringDemoApplication {
 
     public static void main(String[] args) {
@@ -61,4 +67,17 @@ class Product {
     private String productName;
     private int quantity;
     private int price;
+}
+
+@ConfigurationProperties(prefix = "config")
+class MessageProperties {
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
